@@ -1,0 +1,57 @@
+
+.app {
+  width: 100vw;
+  height: 100%;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.playlist {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  padding: 20px 40px 20px 40px;
+  background: linear-gradient(
+    0deg,
+    rgba(57, 129, 124, 1) 40%,
+    rgba(92, 216, 208, 1) 100%
+  );
+}
+
+
+.playlist-info {
+  margin-top: 70px;
+}
+
+.playlist-playlist{
+  height: 70%;
+  background: rgb(36,76,73);
+background: linear-gradient(180deg, rgba(36,76,73,1) 0%, rgba(18,18,18,1) 5%);
+}
+
+.playlist-player {
+  background-color: #181818;
+  overflow: hidden;
+  position: fixed;
+  padding: 20px;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.divider {
+  width: 100%;
+  border-top: 1px solid transparent;
+  opacity: 0.1;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
