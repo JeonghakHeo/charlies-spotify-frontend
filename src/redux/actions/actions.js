@@ -33,6 +33,8 @@ import {
   UNLIKE_SONG_FAIL,
 } from '../constants/playerConstants'
 
+const productionUrl = 'https://charlies-spotify-backend.onrender.com'
+
 export const getMyProfile = () => async (dispatch) => {
   try {
     dispatch({ type: GET_MY_PROFILE_REQUEST })
@@ -45,7 +47,10 @@ export const getMyProfile = () => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     }
-    const { data } = await axios.get('/api/spotify/myprofile', config)
+    const { data } = await axios.get(
+      `${productionUrl}/api/spotify/myprofile`,
+      config
+    )
 
     dispatch({ type: GET_MY_PROFILE_SUCCESS, payload: data })
   } catch (error) {
@@ -66,7 +71,10 @@ export const getMyPlaylists = () => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     }
-    const { data } = await axios.get('/api/spotify/myplaylists', config)
+    const { data } = await axios.get(
+      `${productionUrl}/api/spotify/myplaylists`,
+      config
+    )
 
     dispatch({ type: GET_MY_PLAYLISTS_SUCCESS, payload: data })
   } catch (error) {
@@ -87,7 +95,10 @@ export const getMyLikedSongs = () => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     }
-    const { data } = await axios.get(`/api/spotify/mylikedsongs`, config)
+    const { data } = await axios.get(
+      `${productionUrl}/api/spotify/mylikedsongs`,
+      config
+    )
 
     dispatch({ type: GET_MY_LIKED_SONG_SUCCESS, payload: data })
   } catch (error) {
@@ -111,7 +122,7 @@ export const getPlaylistInfo =
         },
       }
       const { data } = await axios.get(
-        `/api/spotify/playlist/${playlistId}`,
+        `${productionUrl}/api/spotify/playlist/${playlistId}`,
         config
       )
 
@@ -176,7 +187,11 @@ export const playSong =
         },
       }
 
-      await axios.put(`/api/spotify/player/track/${deviceId}`, body, config)
+      await axios.put(
+        `${productionUrl}/api/spotify/player/track/${deviceId}`,
+        body,
+        config
+      )
 
       dispatch({ type: PLAY_SONG_SUCCESS })
     } catch (error) {
@@ -196,7 +211,11 @@ export const likeSong = (songId) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.put(`/api/spotify/track/${songId}`, {}, config)
+    const { data } = await axios.put(
+      `${productionUrl}/api/spotify/track/${songId}`,
+      {},
+      config
+    )
 
     dispatch({ type: LIKE_SONG_SUCCESS, payload: data })
   } catch (error) {
@@ -216,7 +235,10 @@ export const unlikeSong = (songId) => async (dispatch) => {
       },
     }
 
-    const { data } = await axios.delete(`/api/spotify/track/${songId}`, config)
+    const { data } = await axios.delete(
+      `${productionUrl}/api/spotify/track/${songId}`,
+      config
+    )
 
     dispatch({ type: UNLIKE_SONG_SUCCESS, payload: data })
   } catch (error) {
@@ -241,7 +263,7 @@ export const toggleShuffle = () => async (dispatch, getState) => {
 
     if (shuffle === false) {
       const { data } = await axios.put(
-        `/api/spotify/shuffle/${!shuffle}`,
+        `${productionUrl}/api/spotify/shuffle/${!shuffle}`,
         {},
         config
       )
@@ -250,7 +272,7 @@ export const toggleShuffle = () => async (dispatch, getState) => {
 
     if (shuffle === true) {
       const { data } = await axios.put(
-        `/api/spotify/shuffle/${!shuffle}`,
+        `${productionUrl}/api/spotify/shuffle/${!shuffle}`,
         {},
         config
       )
@@ -280,7 +302,7 @@ export const toggleRepeat = () => async (dispatch, getState) => {
 
     if (repeat === 0) {
       const { data } = await axios.put(
-        `/api/spotify/repeat/context`,
+        `${productionUrl}/api/spotify/repeat/context`,
         { deviceId },
         config
       )
@@ -289,7 +311,7 @@ export const toggleRepeat = () => async (dispatch, getState) => {
 
     if (repeat === 1) {
       const { data } = await axios.put(
-        `/api/spotify/repeat/track`,
+        `${productionUrl}/api/spotify/repeat/track`,
         { deviceId },
         config
       )
@@ -298,7 +320,7 @@ export const toggleRepeat = () => async (dispatch, getState) => {
 
     if (repeat === 2) {
       const { data } = await axios.put(
-        `/api/spotify/repeat/off`,
+        `${productionUrl}/api/spotify/repeat/off`,
         { deviceId },
         config
       )
@@ -322,7 +344,11 @@ export const setPlaybackVolume = (volume) => async (dispatch, getState) => {
       },
     }
 
-    await axios.put(`/api/player/volume/${deviceId}`, { volume }, config)
+    await axios.put(
+      `${productionUrl}/api/player/volume/${deviceId}`,
+      { volume },
+      config
+    )
     dispatch({ type: SET_PLAYBACK_VOLUME_SUCCESS })
   } catch (error) {
     dispatch({ type: SET_PLAYBACK_VOLUME_FAIL })

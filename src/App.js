@@ -37,8 +37,9 @@ const App = () => {
   }
 
   const getRedirectUrl = async () => {
+    const productionUrl = 'https://charlies-spotify-backend.onrender.com'
     try {
-      const { data } = await axios.get('/api/auth/login')
+      const { data } = await axios.get(`${productionUrl}/api/auth/login`)
       window.location.replace(data.redirectUrl)
     } catch (error) {
       console.log(error)
