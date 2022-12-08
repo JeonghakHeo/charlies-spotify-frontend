@@ -18,12 +18,14 @@ const App = () => {
 
   const params = new URLSearchParams(window.location.search)
 
+  // get or exchange code for token from URL
   const getToken = async () => {
+    const productionUrl = 'https://charlies-spotify-backend.onrender.com'
     try {
       const data = await axios.get(
-        `/api/auth/callback?code=${params.get('code')}&state=${params.get(
-          'state'
-        )}`
+        `${productionUrl}/api/auth/callback?code=${params.get(
+          'code'
+        )}&state=${params.get('state')}`
       )
       setToken(data?.data?.access_token)
       localStorage.setItem('token', JSON.stringify(data?.data?.access_token))
@@ -36,6 +38,7 @@ const App = () => {
     getToken()
   }
 
+  // redirect user to Spotify webpage for authorization
   const getRedirectUrl = async () => {
     const productionUrl = 'https://charlies-spotify-backend.onrender.com'
     try {
