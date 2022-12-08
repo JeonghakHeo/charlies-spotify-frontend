@@ -19,8 +19,9 @@ const App = () => {
   const params = new URLSearchParams(window.location.search)
 
   // get or exchange code for token from URL
+  // and store in local storage
   const getToken = async () => {
-    const productionUrl = 'https://charlies-spotify-backend.onrender.com'
+    const productionUrl = 'https://charlies-spotify-frontend.onrender.com'
     try {
       const data = await axios.get(
         `${productionUrl}/api/auth/callback?code=${params.get(
